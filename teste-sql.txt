@@ -1,0 +1,19 @@
+Seu nome:Natã Soranzo de Resende
+
+1)SELECT * FROM en_filme
+	ORDER BY data_lancamento ASC
+	LIMIT 1; 
+
+2)SELECT a.id_cliente, a.nome, count(a.id_cliente) as Alugueis
+	FROM  en_cliente AS a
+	JOIN en_aluguel AS b
+	ON a.id_cliente = b.id_cliente
+	GROUP BY a.id_cliente
+	ORDER BY Alugueis;
+
+3)SELECT b.id_cliente, b.nome,count(a.id_cliente)as Alugueis,SUM (valor)AS 	total_gasto,EXTRACT(YEAR FROM data_aluguel) 
+	FROM en_aluguel AS a
+	JOIN en_cliente AS b
+	ON a.id_cliente = b.id_cliente 
+	GROUP BY a.data_aluguel, b.id_cliente
+	ORDER BY total_gasto DESC;
